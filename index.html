@@ -25,6 +25,7 @@
 
     <div class="container">
       <h2>Speed Typer</h2>
+      <button class="play-btn">Play</button>
       <small>Type the following:</small>
 
       <h1 id="word"></h1>
@@ -34,11 +35,12 @@
         id="text"
         autocomplete="off"
         placeholder="Type the word here..."
+        disabled
       />
 
-      <p class="time-container">Time left: <span id="time">10s</span></p>
+      <p class="time-container">Time left: <span id="time"></span></p>
 
-      <p class="score-container">Score: <span id="score">0</span></p>
+      <p class="score-container">Score: <span id="score"></span></p>
 
       <div id="end-game-container" class="end-game-container"></div>
     </div>
