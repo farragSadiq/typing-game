@@ -1,4 +1,4 @@
-const playbtn = document.getElementById(".play-btn");
+const playbtn = document.getElementById("play-btn");
 const settings = document.getElementById("settings");
 const settingsbtn = document.getElementById("settings-btn");
 const difficulty = document.getElementById("difficulty");
@@ -61,30 +61,19 @@ function play() {
 }
 
 function checkInput(e) {
-  switch (difficulty.value) {
-    case "easy":
-      if (e.target.value === word.innerHTML) {
-        e.target.value = "";
-        timeVal += 7;
-        score.innerHTML = scoreVal += 3;
-        word.innerHTML = randomWord();
-      }
-
-    case "medium":
-      if (e.target.value === word.innerHTML) {
-        e.target.value = "";
-        timeVal += 5;
-        score.innerHTML = scoreVal += 5;
-        word.innerHTML = randomWord();
-      }
-
-    case "hard":
-      if (e.target.value === word.innerHTML) {
-        e.target.value = "";
-        timeVal += 3;
-        score.innerHTML = scoreVal += 7;
-        word.innerHTML = randomWord();
-      }
+  if (e.target.value === word.innerHTML) {
+    e.target.value = "";
+    word.innerHTML = randomWord();
+    if (difficulty.value === "easy") {
+      timeVal += 7;
+      score.innerHTML = scoreVal += 1;
+    } else if (difficulty.value === "medium") {
+      timeVal += 5;
+      score.innerHTML = scoreVal += 3;
+    } else if (difficulty.value === "hard") {
+      timeVal += 3;
+      score.innerHTML = scoreVal += 5;
+    }
   }
 }
 
