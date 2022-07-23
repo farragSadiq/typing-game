@@ -1,4 +1,4 @@
-const playbtn = document.querySelector(".play-btn");
+const playbtn = document.getElementById(".play-btn");
 const settings = document.getElementById("settings");
 const settingsbtn = document.getElementById("settings-btn");
 const difficulty = document.getElementById("difficulty");
@@ -19,7 +19,7 @@ const words = [
 ];
 
 function randomWord() {
-  return words[Math.floor(Math.random() * (words.length - 1))];
+  return words[Math.floor(Math.random() * words.length)];
 }
 
 let timeVal;
@@ -44,13 +44,15 @@ function startScreen() {
 function play() {
   playbtn.setAttribute("disabled", "disabled");
   text.removeAttribute("disabled");
+  text.focus();
   difficulty.setAttribute("disabled", "disabled");
 
   word.innerHTML = randomWord();
 
   const countDown = setInterval(() => {
-    time.innerHTML = `${timeVal--}s`;
-    if (timeVal < 0) {
+    timeVal--;
+    time.innerHTML = `${timeVal}s`;
+    if (timeVal === 0) {
       clearInterval(countDown);
       endGameContainer.innerHTML = `<h1>Game Over</h1> <p>Score: ${scoreVal}</p> <button onclick="startScreen()">Play again</button>`;
       endGameContainer.style.display = "flex";
@@ -58,27 +60,27 @@ function play() {
   }, 1000);
 }
 
-function checkInput() {
+function checkInput(e) {
   switch (difficulty.value) {
     case "easy":
-      if (text.value === word.innerHTML) {
-        text.value = "";
+      if (e.target.value === word.innerHTML) {
+        e.target.value = "";
         timeVal += 7;
         score.innerHTML = scoreVal += 3;
         word.innerHTML = randomWord();
       }
 
     case "medium":
-      if (text.value === word.innerHTML) {
-        text.value = "";
+      if (e.target.value === word.innerHTML) {
+        e.target.value = "";
         timeVal += 5;
         score.innerHTML = scoreVal += 5;
         word.innerHTML = randomWord();
       }
 
     case "hard":
-      if (text.value === word.innerHTML) {
-        text.value = "";
+      if (e.target.value === word.innerHTML) {
+        e.target.value = "";
         timeVal += 3;
         score.innerHTML = scoreVal += 7;
         word.innerHTML = randomWord();
